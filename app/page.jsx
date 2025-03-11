@@ -13,6 +13,8 @@ import { aiInsights } from "@models/aiInsights";
 import { newsArticles } from "@models/newsArticles";
 import NewsCard from "@components/NewsCard";
 import WarningCard from "@components/WarningCard";
+import AirQualityChart from "@components/AirQualityChart";
+import AQIForecastGraph from "@components/AQIForecastGraph";
 
 const page = () => {
   const [showPollutants, setShowPollutants] = useState(false);
@@ -65,7 +67,7 @@ const page = () => {
               ].map((pollutant, index) => (
                 <div
                   key={index}
-                  className={`${pollutant.color} text-white p-4 rounded-lg shadow-lg`}
+                  className={`${pollutant.color} text-black p-4 rounded-lg shadow-lg`}
                 >
                   <p className="font-semibold font-secondary">PM2.5</p>
                   <p className="text-2xl font-secondary font-bold">
@@ -81,11 +83,24 @@ const page = () => {
 
       {/* {good-o-meter scale here} */}
       <section className="centered-section good-o-meter">
-        <AQIScale aqi={87} />
+        <AQIScale aqi={20} />
       </section>
 
-      <section className="centered-section historical-pollutants mt-15">
-        <WarningCard message="The PM2.5 concentration in Peterborough is currently 1.5 times the World Health Organization annual PM2.5 guideline value." />
+      <section className="centered-section historical-pollutants mt-5">
+        <WarningCard
+          city="Peterborough"
+          message="The PM2.5 concentration in Peterborough is currently 1.5 times the World Health Organization annual PM2.5 guideline value."
+        />
+      </section>
+
+      <section className="centered-section mt-15">
+        <h2 className="text-2xl font-bold text-gray-800">
+          Historical Air Quality Data
+        </h2>
+        <p className="font-secondary text-gray-600">
+          Select a pollutant to view historical trends.
+        </p>
+        <AirQualityChart />
       </section>
 
       <section className="centered-section aqi-forecast mt-15">
@@ -102,7 +117,9 @@ const page = () => {
 
         <ForecastCarousel forecastData={forecastData} />
 
-        <div className="graphs my-30"></div>
+        <div className="graphs">
+          <AQIForecastGraph />
+        </div>
 
         <div className="disclaimers font-secondary text-gray-500">
           <p className="font-bold">
@@ -124,18 +141,20 @@ const page = () => {
         </h2>
 
         {/* Description */}
-        <p className="mt-4 text-gray-700">
-          Over the past week, air pollution levels in Peterborough have been
-          moderate, but a rising trend in PM2.5 suggests air quality may worsen.
+        <p className="font-secondary text-gray-600">
+          Smart insights based on pollutant levels to help you breathe safer
+          air.
         </p>
 
         {/* Insights List */}
-        <div className="mt-6 space-y-2">
-          {Object.values(aiInsights).map((insight, index) => (
-            <div key={index} className="border-b-2 border-gradient p-4">
-              <p className="text-gray-900">{insight}</p>
-            </div>
-          ))}
+        <div className="mt-6">
+          <ul className=" text-justify list-disc list-inside space-y-2 text-gray-900">
+            {Object.values(aiInsights).map((insight, index) => (
+              <li key={index} className="p-2">
+                {insight}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -164,8 +183,9 @@ const page = () => {
       </section>
 
       <section className="centered-section text-gray-600">
-        Built with love ❤️ by <span className="italic font-bold underline">David</span>{" "}
-        and <span className="italic font-bold underline">Desmond</span>
+        Built with love ❤️ by{" "}
+        <span className="italic font-bold underline">David</span> and{" "}
+        <span className="italic font-bold underline">Desmond</span>
       </section>
     </div>
   );
