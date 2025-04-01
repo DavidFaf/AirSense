@@ -13,9 +13,9 @@ export default function AQIScale({ aqi }) {
         <svg width="100%" height="100%">
           <defs>
             <linearGradient id="aqiGradient" x1="0%" y1="50%" x2="100%" y2="50%">
-              <stop offset="0%" style={{ stopColor: "red", stopOpacity: 1 }} />
+              <stop offset="0%" style={{ stopColor: "green", stopOpacity: 1 }} />
               <stop offset="50%" style={{ stopColor: "yellow", stopOpacity: 1 }} />
-              <stop offset="100%" style={{ stopColor: "green", stopOpacity: 1 }} />
+              <stop offset="100%" style={{ stopColor: "red", stopOpacity: 1 }} />
             </linearGradient>
           </defs>
           <rect width="100%" height="100%" fill="url(#aqiGradient)" />
@@ -34,7 +34,7 @@ export default function AQIScale({ aqi }) {
       <div className="flex justify-between text-sm mt-1">
         <span>0</span>
         <span style={{ position: "absolute", left: `calc(${aqiPercentage}% - 10px)`, whiteSpace: "nowrap" }}>
-          {aqiValue}
+          {aqi}
         </span>
         <span>100</span>
       </div>

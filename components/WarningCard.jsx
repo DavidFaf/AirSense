@@ -1,21 +1,40 @@
 import { FaExclamationTriangle } from "react-icons/fa";
 
-export default function WarningCard({ city, message }) {
-  return (
-    <div className="flex items-center p-4 border border-red-400 bg-red-100 text-red-900 rounded-xl w-full max-w-3xl">
-      {/* Warning Icon */}
-      <FaExclamationTriangle className="text-red-600 text-xl mr-3" />
+export default function WarningCard({
+  city,
+  multiple,
+  mainPollutant,
+  severity,
+}) {
+  // Local style logic based on severity ratio
+  let bg = "bg-green-100";
+  let border = "border-green-400";
+  let text = "text-green-900";
 
-      {/* Warning Message */}
+  if (multiple > 1 && multiple <= 1.5) {
+    bg = "bg-yellow-100";
+    border = "border-yellow-400";
+    text = "text-yellow-900";
+  } else if (multiple > 1.5 && multiple <= 2.5) {
+    bg = "bg-orange-100";
+    border = "border-orange-400";
+    text = "text-orange-900";
+  } else if (multiple > 2.5) {
+    bg = "bg-red-100";
+    border = "border-red-400";
+    text = "text-red-900";
+  }
+
+  return (
+    <div
+      className={`flex items-center p-4 border ${border} ${bg} ${text} rounded-xl w-full max-w-3xl`}
+    >
+      <FaExclamationTriangle className="text-xl mr-3" />
       <p className="text-sm">
-        {message.split(city).map((part, index) => (
-          <span key={index}>
-            {part}
-            {index !== message.split(city).length - 1 && (
-              <span className="font-bold italic">{city}</span>
-            )}
-          </span>
-        ))}
+        The <span className="font-medium">{mainPollutant}</span> concentration
+        in <span className="font-bold italic">{city}</span> is currently{" "}
+        <span className="font-bold italic">{multiple}</span> times the WHO annual{" "}
+        <span className="font-medium">{mainPollutant}</span> guideline value.
       </p>
     </div>
   );
