@@ -20,6 +20,7 @@ import { WHO_LIMITS } from "@models/WHO_LIMITS";
 import { getColorClass } from "@utils/getColorClass";
 import { formatUnixDate } from "@utils/formatUnixDate";
 import { getSeverityStyles } from "@/utils/getSeverityStyles";
+import { transformHistoricalData } from "@utils/transformHistoricalData";
 
 const page = () => {
   const [showPollutants, setShowPollutants] = useState(false);
@@ -131,9 +132,9 @@ const page = () => {
       setCurrentPollutants(currentData);
       console.log("✅ Current pollutants:", currentData);
 
-      // Step 3: Fetch historical air pollution data (last 5 days)
+      // Step 3: Fetch historical air pollution data (last 10 days)
       const now = new Date();
-      const fiveDaysAgo = new Date(now.getTime() - 5 * 24 * 60 * 60 * 1000);
+      const fiveDaysAgo = new Date(now.getTime() - 10 * 24 * 60 * 60 * 1000);
       const start = Math.floor(fiveDaysAgo.getTime() / 1000); // Unix timestamp (s)
       const end = Math.floor(now.getTime() / 1000);
 
@@ -195,6 +196,9 @@ const page = () => {
 
   // Get severity styles for WHO card
   const severityStyles = getSeverityStyles(ratio);
+
+  const historicalData = transformHistoricalData(historicalPollutants);
+  console.log("📈 Historical Data:", historicalData);
 
   return (
     <div>
@@ -285,7 +289,7 @@ const page = () => {
         <p className="font-secondary text-gray-600">
           Select a pollutant to view historical trends.
         </p>
-        <AirQualityChart />
+        <AirQualityChart historicalData={historicalData} />
       </section>
 
       <section className="centered-section aqi-forecast mt-15">
