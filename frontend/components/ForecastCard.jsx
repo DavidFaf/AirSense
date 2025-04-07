@@ -6,15 +6,23 @@ export default function ForecastCard({
   pollutant,
   concentration,
   bgColor,
+  source,
 }) {
   return (
     <div className="w-64 rounded-xl drop-shadow-sm overflow-hidden">
       {/* Top Section */}
       <div className={`${bgColor} p-4 flex justify-between items-center`}>
-        <span className="text-lg font-semibold"> {date} </span>
-        <div className="border-2 border-black rounded-lg px-4 py-2 text-center">
-          <p className="text-xl font-bold">{aqi}</p>
-          <p className="text-xs">AQI</p>
+        <span className="text-[17px] font-semibold"> {date} </span>
+
+        <div className="text-center">
+          <div className="border-2 border-black rounded-lg px-4 py-2">
+            <p className="text-xl font-bold">{aqi}</p>
+            <p className="text-xs">AQI</p>
+          </div>
+          {/* Source label below AQI box */}
+          {source && (
+            <p className="text-[10px] mt-1 text-gray-700 italic">{source}</p>
+          )}
         </div>
       </div>
 
@@ -26,7 +34,7 @@ export default function ForecastCard({
         </p>
         <p className="flex justify-between">
           <span className="font-semibold">{pollutant} Levels:</span>{" "}
-          <span>{concentration} µg/m³</span>
+          <span>{concentration}</span>
         </p>
       </div>
     </div>

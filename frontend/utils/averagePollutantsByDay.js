@@ -18,7 +18,7 @@ export function averagePollutantsByDay(data) {
       }
   
       grouped[date].count += 1;
-      Object.keys(grouped[date].totals).forEach((key) => {
+      Object.keys(grouped[date].totals).forEach((key) => { 
         grouped[date].totals[key] += pollutants[key] || 0;
       });
     });

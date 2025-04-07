@@ -1,4 +1,5 @@
 import { calculateAQIInfo } from "@utils/calculateAQIInfo";
+import { FaTemperatureHigh, FaWind, FaTint} from "react-icons/fa";
 
 export default function MainAqiCard({ currentPollutants, currentWeather }) {
   const info = calculateAQIInfo(currentPollutants);
@@ -50,17 +51,20 @@ export default function MainAqiCard({ currentPollutants, currentWeather }) {
 
           {/* Right Column */}
           <div className="flex space-x-6">
-            <p>
+            <p className="flex items-center">
+              <FaTemperatureHigh className="mr-1" />
               <span className="font-regular">Temperature:</span>{" "}
-              <span className="font-semibold">xx°C</span>
+              <span className="font-semibold">{temperature}°C</span>
             </p>
-            <p>
+            <p className="flex items-center">
+              <FaTint className="mr-1" />
               <span className="font-regular">Humidity:</span>{" "}
-              <span className="font-semibold">xxx</span>
+              <span className="font-semibold">{humidity}%</span>
             </p>
-            <p>
+            <p className="flex items-center">
+              <FaWind className="mr-1" />
               <span className="font-regular">Wind:</span>{" "}
-              <span className="font-semibold">xxx km/h</span>
+              <span className="font-semibold">{windSpeed} km/h</span>
             </p>
           </div>
         </div>
