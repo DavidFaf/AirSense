@@ -1,11 +1,13 @@
 import { calculateAQIInfo } from "@utils/calculateAQIInfo";
 import { FaTemperatureHigh, FaWind, FaTint} from "react-icons/fa";
 
-export default function MainAqiCard({ currentPollutants, currentWeather }) {
+export default function MainAqiCard({ currentPollutants, currentWeather, insights }) {
   const info = calculateAQIInfo(currentPollutants);
   const temperature = currentWeather?.main?.temp;
   const humidity = currentWeather?.main?.humidity;
   const windSpeed = currentWeather?.wind?.speed;
+  const health_recommendation = insights?.health_recommendation;
+  const possible_causes = insights?.possible_causes;
 
   if (!info)
     return (
@@ -92,16 +94,14 @@ export default function MainAqiCard({ currentPollutants, currentWeather }) {
         <div className="ml-4 flex-1">
           <p className="text-sm font-semibold underline">Possible Causes:</p>
           <p className="text-sm text-gray-900">
-            Low wind speed & traffic congestion
+            {possible_causes ? possible_causes : "Enter a city above to view possible air pollution causes"}
           </p>
 
           <p className="text-sm font-semibold underline mt-2">
             Health Recommendation:
           </p>
           <p className="text-sm  text-gray-900">
-            Limit outdoor activities between <strong>3 PM - 6 PM</strong> as
-            pollution levels are expected to peak. If you need to go outside,
-            consider wearing an <strong>N95 mask</strong>.
+            {health_recommendation ? health_recommendation : "Enter a city above to view possible air pollutants Recommendation"}
           </p>
         </div>
       </div>
