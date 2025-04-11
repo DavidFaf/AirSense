@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# Ignore Python virtual environment
+backend/venv/
+
+# Ignore Python bytecode cache
+backend/__pycache__/
+
+# Optional: ignore env files (if not already ignored)
+backend/.env
+
