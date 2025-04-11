@@ -106,7 +106,8 @@ npm run dev
 - Insights Section with clean layout
 - Modal for location-based recommendations
 
-*(Insert screenshots here)*
+![image](https://github.com/user-attachments/assets/fdc7c72e-f5ca-49f1-af52-9b7f9d560c3b)
+
 
 ## 🔐 Environment Variables
 
