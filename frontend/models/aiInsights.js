@@ -1,11 +1,9 @@
 export const aiInsights = {
-  health_recommendation:
-    "While the overall air quality is good, the elevated levels of CO and O3 could pose health risks, especially for sensitive groups such as children, the elderly, and individuals with respiratory conditions. It is advisable to stay indoors during peak traffic hours to avoid exposure to CO, and to limit outdoor activities during high O3 periods, typically in the afternoon and early evening.",
+  health_recommendation: "While the overall air quality index (AQI) is generally good, the increase in ozone levels could pose a risk to sensitive groups, including children, the elderly, and individuals with respiratory conditions.",
   insights: [
-    "The CO levels are relatively high, which could indicate significant vehicular traffic or industrial activity in the area.",
-    "Ozone levels are within a range that could cause respiratory irritation, especially for sensitive individuals.",
-    "Particulate matter levels are low, suggesting that there are no significant sources of dust or particulate emissions in the immediate area.",
+      "The AQI remains mostly stable throughout the period, indicating generally good air quality.",
+      "There is a noticeable increase in ozone (O3) levels, which could be a concern for sensitive populations.",
+      "Particulate matter (PM2.5 and PM10) levels are relatively low, but show a slight increase in the middle of the data period, which could be due to local sources or weather conditions."
   ],
-  possible_causes:
-    "The data shows a relatively low AQI of 2, indicating good air quality. However, the presence of CO (carbon monoxide) at 260.35 \u00b5g/m\u00b3 and O3 (ozone) at 75.82 \u00b5g/m\u00b3 suggests that there may be some industrial or vehicular emissions contributing to the air quality. The low levels of PM2.5 and PM10 indicate that particulate matter is not a significant issue at this time.",
-};
+  possible_causes: "The data shows a general trend of decreasing levels of most pollutants over time, with a notable increase in ozone (O3) levels. This could be due to a combination of factors such as reduced emissions from vehicles and industrial activities, and favorable weather conditions that promote the formation of ozone.."
+}

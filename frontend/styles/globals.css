@@ -5,6 +5,9 @@
   .centered-section {
     @apply max-w-3xl mx-auto pt-6;
   }
+  .search-bar {
+    @apply max-w-3xl mx-auto;
+  }
 }
 
 @theme {

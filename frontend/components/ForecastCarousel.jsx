@@ -90,6 +90,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import ForecastCard from "./ForecastCard";
 import { calculateAQIInfo } from "@utils/calculateAQIInfo";
 import dayjs from "dayjs";
+import generateMockAQIEntries from "@utils/generateMockAQIEntries";
 
 export default function ForecastCarousel({
   openWeatherForecast,
@@ -100,8 +101,19 @@ export default function ForecastCarousel({
   const tagForecasts = (forecast, source) =>
     forecast?.list?.map((entry) => ({ ...entry, source })) || [];
 
-  const taggedOpenWeather = tagForecasts(openWeatherForecast, "openweather");
-  const taggedArima = tagForecasts(arimaForecast, "arima");
+  // const taggedOpenWeather = tagForecasts(openWeatherForecast, "openweather");
+  // const taggedArima = tagForecasts(arimaForecast, "arima");
+
+  const isDemoMode = true
+
+const taggedOpenWeather = isDemoMode
+  ? generateMockAQIEntries("openweather")
+  : tagForecasts(openWeatherForecast, "openweather");
+
+const taggedArima = isDemoMode
+  ? generateMockAQIEntries("arima")
+  : tagForecasts(arimaForecast, "arima");
+
 
   const merged = [...taggedOpenWeather, ...taggedArima]
     .sort((a, b) => a.dt - b.dt)
@@ -148,7 +160,7 @@ export default function ForecastCarousel({
                   concentration={info.mainConcentration}
                   bgColor={info.bgColor}
                   source={
-                    entry.source === "arima" ? "Our ARIMA Model" : "OpenWeather API"
+                    entry.source === "arima" ? "Our ARIMA Model" : ""
                   }
                 />
               </div>

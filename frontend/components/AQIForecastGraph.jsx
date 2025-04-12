@@ -12,16 +12,51 @@ export default function AQIForecastGraph({ forecastData, arimaForecast }) {
   const isEmpty =
     !forecastData?.list?.length && !arimaForecast?.list?.length;
 
-  if (isEmpty) {
-    return (
-      <div className="mt-5 mb-10">
-        <h2 className="text-lg text-gray-600 font-bold">Forecast graph</h2>
-        <div className="h-64 flex items-center justify-center bg-gray-50 text-gray-500 border border-gray-200 rounded-md">
-          No forecast data yet
-        </div>
-      </div>
-    );
-  }
+  // if (isEmpty) {
+  //   return (
+  //     <div className="mt-5 mb-10">
+  //       <h2 className="text-lg text-gray-600 font-bold">Forecast graph</h2>
+  //       <div className="h-64 flex items-center justify-center bg-gray-50 text-gray-500 border border-gray-200 rounded-md">
+  //         No forecast data yet
+  //       </div>
+  //     </div>
+  //   );
+  // }
+
+  const generateMockForecast = () => {
+    const baseAQI = 33;
+    const days = 7;
+    const mockData = [];
+  
+    for (let i = 0; i < days; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() + i);
+      const day = date.toLocaleDateString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+      });
+  
+      const aqiOpenWeather = Math.max(
+        10,
+        Math.min(100, baseAQI + Math.floor(Math.random() * 10 - 5))
+      );
+      const aqiARIMA = Math.max(
+        10,
+        Math.min(100, baseAQI + Math.floor(Math.random() * 10 - 3))
+      );
+  
+      mockData.push({
+        date: date.toDateString(),
+        day,
+        AQI_OpenWeather: aqiOpenWeather,
+        AQI_ARIMA: aqiARIMA,
+      });
+    }
+  
+    return mockData;
+  };
+  
 
   const formatForecast = (list, source) =>
     list?.map((entry) => {
@@ -55,7 +90,12 @@ export default function AQIForecastGraph({ forecastData, arimaForecast }) {
     Object.assign(existing, entry);
   });
 
-  const mergedData = Array.from(mergedMap.values());
+  // const mergedData = Array.from(mergedMap.values());
+
+  // added this for mock data 
+  const mergedData = mergedMap.size > 0
+  ? Array.from(mergedMap.values())
+  : generateMockForecast(); 
 
   return (
     <div className="mt-5 mb-10">
