@@ -2282,6 +2282,8 @@ const page = () => {
   //   const transformedHistoricalPollutants = formatHistoricalPollutants(
 
 
+
+
 //   const [insights, setInsights] = useState(null);
   const [loadingInsigts, setLoadingInsights] = useState(false);
 
@@ -2331,7 +2333,7 @@ const page = () => {
       historicalPollutants.list &&
       historicalPollutants.list.length > 0
     ) {
-      postToBackend();
+    //   postToBackend();
     //   getInsights();
     }
   }, [historicalPollutants]);
