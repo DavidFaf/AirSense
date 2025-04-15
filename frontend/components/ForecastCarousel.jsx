@@ -101,18 +101,18 @@ export default function ForecastCarousel({
   const tagForecasts = (forecast, source) =>
     forecast?.list?.map((entry) => ({ ...entry, source })) || [];
 
-  // const taggedOpenWeather = tagForecasts(openWeatherForecast, "openweather");
-  // const taggedArima = tagForecasts(arimaForecast, "arima");
+  const taggedOpenWeather = tagForecasts(openWeatherForecast, "openweather");
+  const taggedArima = tagForecasts(arimaForecast, "arima");
 
-  const isDemoMode = true
+//   const isDemoMode = false
 
-const taggedOpenWeather = isDemoMode
-  ? generateMockAQIEntries("openweather")
-  : tagForecasts(openWeatherForecast, "openweather");
+// const taggedOpenWeather = isDemoMode
+//   ? generateMockAQIEntries("openweather")
+//   : tagForecasts(openWeatherForecast, "openweather");
 
-const taggedArima = isDemoMode
-  ? generateMockAQIEntries("arima")
-  : tagForecasts(arimaForecast, "arima");
+// const taggedArima = isDemoMode
+//   ? generateMockAQIEntries("arima")
+//   : tagForecasts(arimaForecast, "arima");
 
 
   const merged = [...taggedOpenWeather, ...taggedArima]
@@ -132,6 +132,10 @@ const taggedArima = isDemoMode
   const scroll = (direction) => {
     scrollRef.current?.scrollBy({ left: direction * 250, behavior: "smooth" });
   };
+
+  console.log("Forecast CAROUSER GRAPH Data:", openWeatherForecast);
+  console.log("ARIMA FORECAST CAROUSEL Forecast:", arimaForecast);
+  console.log("GRAPH FORECAST CAROUSEL MERGED DATA:", merged);
 
   return (
     <div className="relative mt-4">
@@ -160,7 +164,7 @@ const taggedArima = isDemoMode
                   concentration={info.mainConcentration}
                   bgColor={info.bgColor}
                   source={
-                    entry.source === "arima" ? "Our ARIMA Model" : ""
+                    entry.source === "arima" ? "Our ARIMA Model" : "OpenWeather API"
                   }
                 />
               </div>
@@ -178,3 +182,6 @@ const taggedArima = isDemoMode
     </div>
   );
 }
+
+
+

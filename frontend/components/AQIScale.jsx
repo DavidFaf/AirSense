@@ -14,7 +14,7 @@ export default function AQIScale({ aqi }) {
           <defs>
             <linearGradient id="aqiGradient" x1="0%" y1="50%" x2="100%" y2="50%">
               <stop offset="0%" style={{ stopColor: "green", stopOpacity: 1 }} />
-              <stop offset="50%" style={{ stopColor: "yellow", stopOpacity: 1 }} />
+              <stop offset="30%" style={{ stopColor: "yellow", stopOpacity: 1 }} />
               <stop offset="100%" style={{ stopColor: "red", stopOpacity: 1 }} />
             </linearGradient>
           </defs>

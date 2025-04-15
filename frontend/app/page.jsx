@@ -9,7 +9,7 @@ import AQIScale from "@components/AQIScale";
 import { FaCircleInfo } from "react-icons/fa6";
 import ForecastCarousel from "@components/ForecastCarousel";
 import { forecastData } from "@models/forecastData";
-import { aiInsights as insights } from "@models/aiInsights";
+// import { aiInsights as insights } from "@models/aiInsights";
 import { newsArticles } from "@models/newsArticles";
 import { calculateAQIInfo } from "@utils/calculateAQIInfo";
 import NewsCard from "@components/NewsCard";
@@ -23,6 +23,7 @@ import { getSeverityStyles } from "@/utils/getSeverityStyles";
 import { transformHistoricalData } from "@utils/transformHistoricalData";
 import { fetchPollutionInsights } from "@utils/fetchPollutionInsights";
 import airsenseLogo from "@public/images/png/airsense-logo.png";
+import { generateMockForecastData } from "@utils/generateMockForecastData";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -2284,10 +2285,18 @@ const page = () => {
 
 
 
-//   const [insights, setInsights] = useState(null);
+  const [insights, setInsights] = useState(null);
   const [loadingInsigts, setLoadingInsights] = useState(false);
 
 
+  const mockForecastData = generateMockForecastData(info?.mainAqi || 33);
+  const graphData = forecastData.map(item => ({
+    day: item.day,
+    AQI_OpenWeather: item.sourceType === "openweather" ? item.main.aqi : null,
+    AQI_ARIMA: item.sourceType === "arima" ? item.main.aqi : null,
+  }));
+
+  
   useEffect(() => {
     const postToBackend = async () => {
       const response = await fetch(
@@ -2333,15 +2342,15 @@ const page = () => {
       historicalPollutants.list &&
       historicalPollutants.list.length > 0
     ) {
-    //   postToBackend();
-    //   getInsights();
+      postToBackend();
+      getInsights();
     }
   }, [historicalPollutants]);
 
   return (
     <div>
       {/* {Search Bar} */}
-      <section className=" max-w-3xl mx-auto mt-1">
+      <section className="max-w-3xl mx-auto pt-6 px-4 sm:px-6">
       <div className="flex items-center">
           <a className="text-2xl font-semibold font-poppings italic text-[#224b6e] tracking-wide" href="/">
             AirSense

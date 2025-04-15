@@ -38,38 +38,39 @@ export default function MainAqiCard({ currentPollutants, currentWeather, insight
         </div>
 
         {/* Additional Details Section */}
-        <div className="flex justify-between  py-4 px-6 text-sm text-gray-900">
-          {/* Left Column */}
-          <div>
-            <p>
-              <span className="font-regular">Main Pollutant:</span>{" "}
-              <span className=" font-semibold">xxx</span>
-            </p>
-            <p>
-              <span className="font-regular">xxx Levels:</span>{" "}
-              <span className="font-semibold">xxx</span>
-            </p>
-          </div>
+        <div className="flex flex-col md:flex-row justify-between py-4 px-4 sm:px-6 text-sm text-gray-900 space-y-4 md:space-y-0">
+  {/* Left Column */}
+  <div>
+    <p>
+      <span className="font-regular">Main Pollutant:</span>{" "}
+      <span className="font-semibold">xxx</span>
+    </p>
+    <p>
+      <span className="font-regular">xxx Levels:</span>{" "}
+      <span className="font-semibold">xxx</span>
+    </p>
+  </div>
 
-          {/* Right Column */}
-          <div className="flex space-x-6">
-            <p className="flex items-center">
-              <FaTemperatureHigh className="mr-1" />
-              <span className="font-regular">Temperature:</span>{" "}
-              <span className="font-semibold">{temperature}°C</span>
-            </p>
-            <p className="flex items-center">
-              <FaTint className="mr-1" />
-              <span className="font-regular">Humidity:</span>{" "}
-              <span className="font-semibold">{humidity}%</span>
-            </p>
-            <p className="flex items-center">
-              <FaWind className="mr-1" />
-              <span className="font-regular">Wind:</span>{" "}
-              <span className="font-semibold">{windSpeed} km/h</span>
-            </p>
-          </div>
-        </div>
+  {/* Right Column */}
+  <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-2 sm:space-y-0">
+    <p className="flex items-center">
+      <FaTemperatureHigh className="mr-1" />
+      <span className="font-regular">Temperature:</span>{" "}
+      <span className="font-semibold">{temperature}°C</span>
+    </p>
+    <p className="flex items-center">
+      <FaTint className="mr-1" />
+      <span className="font-regular">Humidity:</span>{" "}
+      <span className="font-semibold">{humidity}%</span>
+    </p>
+    <p className="flex items-center">
+      <FaWind className="mr-1" />
+      <span className="font-regular">Wind:</span>{" "}
+      <span className="font-semibold">{windSpeed} km/h</span>
+    </p>
+  </div>
+</div>
+
       </div>
     );
 

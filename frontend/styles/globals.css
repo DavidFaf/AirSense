@@ -3,11 +3,13 @@
 
 @layer components {
   .centered-section {
-    @apply max-w-3xl mx-auto pt-6;
+    @apply max-w-3xl mx-auto pt-6 px-4 sm:px-6;
   }
+  
   .search-bar {
-    @apply max-w-3xl mx-auto;
+    @apply max-w-3xl mx-auto px-4 sm:px-6;
   }
+  
 }
 
 @theme {

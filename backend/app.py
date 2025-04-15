@@ -361,13 +361,6 @@ HEADERS = {
 
 def parse_response(raw_text):
     """ Extract structured data from the LLM output """
-    # Example structure:
-    # 1. Health impact assessment: ...
-    # 2. Notable trends: ...
-    # 3. Actionable recommendations:
-    #    - ...
-    #    - ...
-    #    - ...
 
     # Simple regex patterns
     health_pattern = r"1\.\s*Health impact assessment:?\s*(.+?)\s*2\."
@@ -485,7 +478,7 @@ def generate_insights():
 You are an air quality analyst. You will be given historical air pollutant data. Your job is to:
 
 1. Identify notable trends in the data  
-2. Assess health impacts based on observed pollutant levels  
+2. Assess health impacts based on observed pollutant levels 
 3. Recommend 3 actionable steps people can take to stay safe
 
 Return your output strictly as JSON with the following format:
@@ -499,6 +492,8 @@ Return your output strictly as JSON with the following format:
     "..."
   ]
 }}
+
+Let the "possible_causes" be a short summary of the trend (e.g., "Industrial or vehicular emissions"), and the "health_recommendation" be a concise advice (2 lines max).
 
 Historical data: {json.dumps(pollutant_history, indent=2)}
 """
@@ -563,5 +558,8 @@ Historical data: {json.dumps(pollutant_history, indent=2)}
             "exception": str(e)
         }), 500
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
